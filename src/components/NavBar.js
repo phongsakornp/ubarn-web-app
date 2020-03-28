@@ -31,19 +31,13 @@ const SocialMenuItem = ({ title, iconClassName, href, isTransparent }) => {
     <li className="flex items-center">
       <a
         className={
-          (isTransparent
-            ? "lg:text-white lg:hover:text-gray-300 text-gray-800"
-            : "text-gray-800 hover:text-gray-600") +
-          " px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+          "text-gray-800 hover:text-gray-600 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
         }
         href={href}
       >
         <i
           className={
-            (isTransparent
-              ? "lg:text-gray-300 text-gray-500"
-              : "text-gray-500") +
-            " fab fa-facebook text-lg leading-lg " +
+            "text-gray-500 fab fa-facebook text-lg leading-lg " +
             `${iconClassName}`
           }
         />
@@ -53,40 +47,35 @@ const SocialMenuItem = ({ title, iconClassName, href, isTransparent }) => {
   )
 }
 
-const NavBar = ({ title, isTransparent }) => {
+const NavBar = ({ title }) => {
   const [navbarOpen, setNavbarOpen] = React.useState(false)
   return (
     <>
       <nav
         className={
-          (isTransparent
-            ? "top-0 absolute z-50 w-full"
-            : "relative shadow-lg bg-white shadow-lg") +
-          " flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg"
+          "relative flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg"
         }
       >
         <div className="container flex flex-wrap items-center justify-between px-4 mx-auto">
           <div className="relative flex justify-between w-full lg:w-auto lg:static lg:block lg:justify-start">
             <a
               className={
-                (isTransparent ? "text-white" : "text-gray-800") +
-                " text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase"
+                "text-gray-800 text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase"
               }
               href="/"
             >
               {title}
             </a>
             <button
-              className="block px-3 py-1 text-xl leading-none bg-transparent border border-transparent border-solid rounded outline-none cursor-pointer lg:hidden focus:outline-none"
+              className={
+                "block px-3 py-1 text-xl leading-none bg-transparent" +
+                " border border-transparent border-solid rounded" +
+                " outline-none cursor-pointer lg:hidden focus:outline-none"
+              }
               type="button"
               onClick={() => setNavbarOpen(!navbarOpen)}
             >
-              <i
-                className={
-                  (isTransparent ? "text-white" : "text-gray-800") +
-                  " fas fa-bars"
-                }
-              ></i>
+              <i className={"text-gray-800 fas fa-bars"}></i>
             </button>
           </div>
           <div
@@ -107,19 +96,16 @@ const NavBar = ({ title, isTransparent }) => {
                 title="facebook"
                 href="#"
                 iconClassName="fab fa-facebook"
-                isTransparent={isTransparent}
               />
               <SocialMenuItem
                 title="twitter"
                 href="#"
                 iconClassName="fab fa-twitter"
-                isTransparent={isTransparent}
               />
               <SocialMenuItem
                 title="github"
                 href="#"
                 iconClassName="fab fa-github"
-                isTransparent={isTransparent}
               />
             </ul>
           </div>
@@ -130,10 +116,8 @@ const NavBar = ({ title, isTransparent }) => {
 }
 NavBar.propTypes = {
   title: PropTypes.node,
-  isTransparent: PropTypes.bool,
 }
 NavBar.defaultProps = {
-  isTransparent: false,
   title: "Ubarn",
 }
 export default NavBar
