@@ -12,7 +12,7 @@ const Stat = ({ title, className }) => {
   return (
     <div
       className={`
-        flex flex-col items-center justify-center w-32 h-24 bg-gray-200 rounded shadow lg:w-40 shadow-sm ${className}
+        flex flex-col items-center justify-center w-32 h-32 bg-white rounded-md shadow lg:w-40 shadow-sm ${className}
       `}
     >
       <div className="text-sm font-bold">{title}</div>
@@ -28,7 +28,7 @@ const IndexPage = () => {
           <>
             <Seo title="Home" />
             <div
-              className="flex flex-col items-center justify-center bg-blue-100"
+              className="flex flex-col items-center justify-center"
               style={{ height: innerHeight }}
             >
               <div className="flex flex-col items-center">

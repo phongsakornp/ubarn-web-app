@@ -37,7 +37,7 @@ const Layout = ({ renderContent }) => {
   console.log(`windowDimension`, innerHeight)
 
   return (
-    <div className="bg-gray-200 h-full">
+    <div className="h-full">
       <NavBar />
       <div className="">
         <main>{renderContent({ innerHeight: innerHeight - 62 })}</main>

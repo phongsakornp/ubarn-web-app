@@ -10,7 +10,7 @@ const ComponentText = {
 
 const MenuItem = ({ title, href, isTransparent }) => {
   return (
-    <li className="flex items-center w-full">
+    <li className="flex items-center w-full lg:w-auto">
       <a
         className={
           (isTransparent
@@ -94,9 +94,8 @@ const NavBar = ({ title, isTransparent }) => {
               "lg:flex flex-grow items-center bg-white lg:bg-transparent lg:shadow-none" +
               (navbarOpen ? " block rounded shadow-lg" : " hidden")
             }
-            id="example-navbar-warning"
           >
-            <ul className="flex flex-col flex-grow mr-auto list-none lg:flex-row lg:justify-center">
+            <ul className="flex flex-col flex-grow mr-auto list-none lg:flex-row lg:justify-center lg:items-center">
               <MenuItem title={ComponentText.HOME_MENU} href="/" />
               <MenuItem title={ComponentText.HOSPITAL_MENU} href="/hospital" />
               <MenuItem title={ComponentText.DOATE_MENU} href="/donate" />
