@@ -34,15 +34,15 @@ const Layout = ({ renderContent }) => {
     }
   }, [])
 
-  console.log(`windowDimension`, innerHeight)
-
   return (
     <div className="h-full">
       <NavBar />
-      <div className="">
-        <main>{renderContent({ innerHeight: innerHeight - 62 })}</main>
-        <footer>© {new Date().getFullYear()}</footer>
+      <div className="flex flex-col items-center w-full">
+        <main className="w-full flex flex-col items-center">
+          {renderContent({ innerHeight: innerHeight - 62 })}
+        </main>
       </div>
+      <footer>© {new Date().getFullYear()}</footer>
     </div>
   )
 }
