@@ -1,21 +1,52 @@
 import React from "react"
-import { Link } from "gatsby"
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import Layout from "../components/Layout"
+import Seo from "../components/Seo"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
+const ComponentText = {
+  HERO_TITLE: "สถานการณ์ COVID-19 จังหวัดตรัง",
+  HERO_SUBTITLE: "",
+}
+
+const Stat = ({ title, className }) => {
+  return (
+    <div
+      className={`
+        flex flex-col items-center justify-center w-32 h-24 bg-gray-200 rounded shadow lg:w-40 shadow-sm ${className}
+      `}
+    >
+      <div className="text-sm font-bold">{title}</div>
     </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+  )
+}
+
+const IndexPage = () => {
+  return (
+    <Layout
+      renderContent={({ innerHeight }) => {
+        return (
+          <>
+            <Seo title="Home" />
+            <div
+              className="flex flex-col items-center justify-center bg-blue-100"
+              style={{ height: innerHeight }}
+            >
+              <div className="flex flex-col items-center">
+                <div className="mt-0 mb-2 text-xl font-normal font-bold leading-normal text-black lg:text-4xl">
+                  {ComponentText.HERO_TITLE}
+                </div>
+              </div>
+              <div className="conainter flex items-center justify-evenly w-full lg:w-2/3 mt-16 ">
+                <Stat title="จำนวน" />
+                <Stat title="จำนวน" />
+                <Stat title="จำนวน" className="hidden lg:flex" />
+              </div>
+            </div>
+          </>
+        )
+      }}
+    />
+  )
+}
 
 export default IndexPage
