@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
+import { Link, graphql } from 'gatsby';
 
-import shopList from 'data/raw/shop.json';
 import Layout from 'components/Layout';
 import Seo from 'components/Seo';
 import foodImg from 'images/food.svg';
@@ -149,7 +148,7 @@ const filterReducer = (state, action) => {
   }
 };
 
-const Shops = () => {
+const Shops = ({ data }) => {
   const [filter, dispatchFilter] = React.useReducer(filterReducer, {
     city: cityList[0],
     category: {},
@@ -218,25 +217,25 @@ const Shops = () => {
                 }
                 style={{ justifyItems: 'center' }}
               >
-                {shopList.map((shop, idx) => {
+                {data.allShopJson.edges.map(({ node }, idx) => {
                   return (
-                    <Link to={`/shops/${shop.id}`} key={`${shop.name}-${idx}`}>
+                    <Link to={`/shops/${node.id}`} key={`${node.name}-${idx}`}>
                       <div
                         className={
                           'flex flex-col w-full overflow-hidden text-gray-900 bg-white border rounded-lg shadow'
                         }
                       >
                         <img
-                          src={shop.coverImgSrc}
+                          src={node.coverImgSrc}
                           alt="Shop cover"
                           className="object-cover w-full h-48"
                         />
                         <div className={'flex flex-col p-5'}>
                           <div className="text-xs font-semibold tracking-wide text-gray-600 uppercase">
-                            {shop.city}
+                            {node.city}
                           </div>
-                          <h4 className="text-lg font-semibold">{shop.name}</h4>
-                          <div className="mt-2 text-teal-600 text-sm">{`เปิด: ${shop.openTime}`}</div>
+                          <h4 className="text-lg font-semibold">{node.name}</h4>
+                          <div className="mt-2 text-teal-600 text-sm">{`เปิด: ${node.openTime}`}</div>
                         </div>
                       </div>
                     </Link>
@@ -251,3 +250,19 @@ const Shops = () => {
   );
 };
 export default Shops;
+
+export const query = graphql`
+  query {
+    allShopJson {
+      edges {
+        node {
+          id
+          name
+          city
+          openTime
+          coverImgSrc
+        }
+      }
+    }
+  }
+`;
