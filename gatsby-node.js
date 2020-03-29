@@ -37,7 +37,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     reporter.panicOnBuild(`Error while running GraphQL query.`);
     return;
   }
-  console.log(JSON.stringify(shopData, null, 4));
+
+  // console.log(JSON.stringify(shopData, null, 4));
 
   const shopTemplate = path.resolve(`src/templates/ShopView.js`);
 
