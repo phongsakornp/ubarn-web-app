@@ -28,7 +28,7 @@ const IndexPage = () => {
           <>
             <Seo title="Home" />
             <div
-              className="flex flex-col items-center justify-center"
+              className="flex flex-col items-center justify-center w-full"
               style={{ height: innerHeight }}
             >
               <div className="flex flex-col items-center">
@@ -36,7 +36,7 @@ const IndexPage = () => {
                   {ComponentText.HERO_TITLE}
                 </div>
               </div>
-              <div className="conainter flex items-center justify-evenly w-full lg:w-2/3 mt-16 ">
+              <div className="conainter flex items-center justify-evenly w-full max-w-screen-md mt-16">
                 <Stat title="จำนวน" />
                 <Stat title="จำนวน" />
                 <Stat title="จำนวน" className="hidden lg:flex" />

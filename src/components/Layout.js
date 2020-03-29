@@ -38,7 +38,7 @@ const Layout = ({ renderContent }) => {
     <div className="h-full">
       <NavBar />
       <div className="flex flex-col items-center w-full">
-        <main className="w-full flex flex-col items-center">
+        <main className="flex flex-col items-center w-full">
           {renderContent({ innerHeight: innerHeight - 62 })}
         </main>
       </div>

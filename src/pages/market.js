@@ -53,15 +53,15 @@ const Market = () => {
                   </div>
                 </div>
               </div>
-              <div className={"w-full p-5 flex flex-col"}>
+              <div className={"flex flex-col w-full p-5"}>
                 <div className={"text-sm lg:text-base"}>
                   {ComponentText.SELECT_TYPE}
                 </div>
-                <div className={"w-full flex mt-2"}>
+                <div className={"flex w-full  mt-2"}>
                   <div className="flex flex-col">
                     <div
                       className={
-                        "w-20 h-20 flex items-center justify-center rounded-md bg-red-200"
+                        "flex items-center justify-center rounded-md w-20 h-20 bg-red-200"
                       }
                     >
                       <FoodSvg
@@ -77,16 +77,16 @@ const Market = () => {
                   <div className="flex flex-col">
                     <div
                       className={
-                        "w-20 h-20 ml-4 flex items-center justify-center rounded-md bg-red-200"
+                        "flex items-center justify-center rounded-md w-20 h-20 ml-4  bg-red-200"
                       }
                     >
                       <BeverageSvg
                         width="50"
                         height="50"
-                        className={"m-auto h-full block"}
+                        className={"block m-auto h-full"}
                       />
                     </div>
-                    <div className={"mt-2 text-center text-base text-gray-700"}>
+                    <div className={"text-center text-base text-gray-700 mt-2"}>
                       เครื่องดื่ม
                     </div>
                   </div>
