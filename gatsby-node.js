@@ -27,6 +27,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           node {
             id
             name
+            categories
+            coverImg
+            city
+            openTime
           }
         }
       }

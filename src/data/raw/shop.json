@@ -3,7 +3,7 @@
     "id": "judtemcup",
     "name": "จัดเต็มcup",
     "categories": ["food", "beverage"],
-    "coverImgSrc":
+    "coverImg":
       "https://ubarn-public.s3-ap-southeast-1.amazonaws.com/data/shop/judtemcup/cover.jpg",
     "city": "อำเภอเมือง",
     "openTime": "10.30 - 20.30"
@@ -12,7 +12,7 @@
     "id": "guava",
     "name": "Guava",
     "categories": ["beverage"],
-    "coverImgSrc":
+    "coverImg":
       "https://ubarn-public.s3-ap-southeast-1.amazonaws.com/data/shop/guava/cover.jpg",
     "city": "อำเภอเมือง",
     "openTime": "12:00 - 19:00"
@@ -21,7 +21,7 @@
     "id": "hipcafeandbarber",
     "name": "Hip cafe & barber",
     "categories": ["beverage"],
-    "coverImgSrc":
+    "coverImg":
       "https://ubarn-public.s3-ap-southeast-1.amazonaws.com/data/shop/hipcafeandbarber/cover.jpg",
     "city": "อำเภอเมือง",
     "openTime": "10.00 - 20.00"
@@ -30,7 +30,7 @@
     "id": "jetyi",
     "name": "ข้าวขาหมูเจ๊หยี่",
     "categories": ["food"],
-    "coverImgSrc":
+    "coverImg":
       "https://ubarn-public.s3-ap-southeast-1.amazonaws.com/data/shop/jetyi/cover.jpg",
     "city": "อำเภอย่านตาขาว",
     "openTime": "6.00 - 15-00"

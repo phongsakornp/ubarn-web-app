@@ -226,7 +226,7 @@ const Shops = ({ data }) => {
                         }
                       >
                         <img
-                          src={node.coverImgSrc}
+                          src={node.coverImg}
                           alt="Shop cover"
                           className="object-cover w-full h-48"
                         />
@@ -260,7 +260,7 @@ export const query = graphql`
           name
           city
           openTime
-          coverImgSrc
+          coverImg
         }
       }
     }
