@@ -1,12 +1,12 @@
-import React from "react"
+import React from 'react';
 
-import Layout from "../components/Layout"
-import Seo from "../components/Seo"
+import Layout from '../components/Layout';
+import Seo from '../components/Seo';
 
 const ComponentText = {
-  HERO_TITLE: "สถานการณ์ COVID-19 จังหวัดตรัง",
-  HERO_SUBTITLE: "",
-}
+  HERO_TITLE: 'สถานการณ์ COVID-19 จังหวัดตรัง',
+  HERO_SUBTITLE: '',
+};
 
 const Stat = ({ title, className }) => {
   return (
@@ -17,8 +17,8 @@ const Stat = ({ title, className }) => {
     >
       <div className="text-sm font-bold">{title}</div>
     </div>
-  )
-}
+  );
+};
 
 const IndexPage = () => {
   return (
@@ -43,10 +43,10 @@ const IndexPage = () => {
               </div>
             </div>
           </>
-        )
+        );
       }}
     />
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;

@@ -1,7 +1,7 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const textColor = "text-gray-800"
+const textColor = 'text-gray-800';
 
 const H1 = ({ children, className }) => {
   return (
@@ -10,16 +10,16 @@ const H1 = ({ children, className }) => {
     >
       {children}
     </h1>
-  )
-}
+  );
+};
 H1.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-}
+};
 H1.defaultProps = {
   children: null,
-  className: "",
-}
+  className: '',
+};
 
 const H2 = ({ children, className }) => {
   return (
@@ -28,16 +28,16 @@ const H2 = ({ children, className }) => {
     >
       {children}
     </h2>
-  )
-}
+  );
+};
 H2.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-}
+};
 H2.defaultProps = {
   children: null,
-  className: "",
-}
+  className: '',
+};
 
 const H3 = ({ children, className }) => {
   return (
@@ -46,16 +46,16 @@ const H3 = ({ children, className }) => {
     >
       {children}
     </h3>
-  )
-}
+  );
+};
 H3.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-}
+};
 H3.defaultProps = {
   children: null,
-  className: "",
-}
+  className: '',
+};
 
 const H4 = ({ children, className }) => {
   return (
@@ -64,16 +64,16 @@ const H4 = ({ children, className }) => {
     >
       {children}
     </h4>
-  )
-}
+  );
+};
 H4.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-}
+};
 H4.defaultProps = {
   children: null,
-  className: "",
-}
+  className: '',
+};
 
 const H5 = ({ children, className }) => {
   return (
@@ -82,16 +82,16 @@ const H5 = ({ children, className }) => {
     >
       {children}
     </h5>
-  )
-}
+  );
+};
 H5.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-}
+};
 H5.defaultProps = {
   children: null,
-  className: "",
-}
+  className: '',
+};
 
 const H6 = ({ children, className }) => {
   return (
@@ -100,15 +100,15 @@ const H6 = ({ children, className }) => {
     >
       {children}
     </h6>
-  )
-}
+  );
+};
 H6.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-}
+};
 H6.defaultProps = {
   children: null,
-  className: "",
-}
+  className: '',
+};
 
-export { H1, H2, H3, H4, H5 }
+export { H1, H2, H3, H4, H5 };

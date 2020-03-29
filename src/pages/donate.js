@@ -1,12 +1,12 @@
-import React from "react"
+import React from 'react';
 
-import Layout from "../components/Layout"
-import Seo from "../components/Seo"
+import Layout from '../components/Layout';
+import Seo from '../components/Seo';
 
 const ComponentText = {
-  HERO_TITLE: "บริจาค-ช่วยเหลือ",
-  HERO_SUBTITLE: "",
-}
+  HERO_TITLE: 'บริจาค-ช่วยเหลือ',
+  HERO_SUBTITLE: '',
+};
 
 const Market = () => {
   return (
@@ -23,9 +23,9 @@ const Market = () => {
               </div>
             </div>
           </>
-        )
+        );
       }}
     />
-  )
-}
-export default Market
+  );
+};
+export default Market;
