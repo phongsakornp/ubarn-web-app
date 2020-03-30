@@ -7,6 +7,7 @@ import {
   LayoutDispatchContext,
   LayoutActionType,
 } from 'components/context/LayoutContextProvider';
+import { ImageService } from 'data/config';
 import Layout from 'components/Layout';
 import Seo from 'components/Seo';
 import foodImg from 'images/food.svg';
@@ -19,6 +20,7 @@ const ComponentText = {
   SELECT_TYPE: 'เลือกประเภท',
   FOOD_CATEGORY: 'อาหาร',
   BEVERAGE_CATEGORY: 'เครื่องดื่ม',
+  CITY: 'อำเภอ',
 };
 
 const cityList = ['เมือง', 'ย่านตาขาว', 'นาโยง'];
@@ -228,16 +230,16 @@ const Shops = ({ data }) => {
                         }
                       >
                         <img
-                          src={shop.coverImg}
+                          src={`${ImageService.SHOPS_URL}/${shop.id}/cover.jpg`}
                           alt="Shop cover"
                           className="object-cover w-full h-48"
                         />
                         <div className={'flex flex-col p-5'}>
-                          <div className="text-xs font-semibold tracking-wide text-gray-600 uppercase">
-                            {shop.city}
+                          <div className="text-xs font-semibold tracking-wide leading-tight text-gray-600 uppercase">
+                            {`${ComponentText.CITY}${shop.city}`}
                           </div>
                           <h4 className="text-lg font-semibold">{shop.name}</h4>
-                          <div className="mt-2 text-teal-600 text-sm">{`เปิด: ${shop.openTime}`}</div>
+                          <div className="text-teal-600 text-sm mt-2">{`เปิด: ${shop.openTime}`}</div>
                         </div>
                       </div>
                     </Link>
@@ -263,7 +265,7 @@ export const query = graphql`
           city
           categories
           openTime
-          coverImg
+          service
         }
       }
     }

@@ -2,37 +2,61 @@
   {
     "id": "judtemcup",
     "name": "จัดเต็มcup",
-    "categories": ["food", "beverage"],
-    "coverImg":
-      "https://ubarn-public.s3-ap-southeast-1.amazonaws.com/data/shop/judtemcup/cover.jpg",
+    "categories": ["food"],
     "city": "เมือง",
-    "openTime": "10.30 - 20.30"
+    "openTime": "10.30 - 20.30",
+    "menu": [
+      { "id": "1", "name": "ข้าวไข่ข้นต้มยำกุ้ง", "price": 99},
+      { "id": "2", "name": "ข้าวไก่ตุ๋นเต้าเจี้ยว", "price": 89},
+      { "id": "3", "name": "ข้าวกะหรี่ไก่กรอบ", "price": 50}
+    ],
+    "service": "pickup",
+    "address": "36/8 ม.4 ต.ควนปริง อ.เมือง จ.ตรัง ใกล้กับมอ.ตรังเพียง 500เมตร",
+    "phone": "0848427664"
   },
   {
     "id": "guava",
     "name": "Guava",
     "categories": ["beverage"],
-    "coverImg":
-      "https://ubarn-public.s3-ap-southeast-1.amazonaws.com/data/shop/guava/cover.jpg",
     "city": "เมือง",
-    "openTime": "12:00 - 19:00"
+    "openTime": "12:00 - 19:00",
+    "menu": [
+      { "id": "1", "name": "เสต็กหมู", "price": 330},
+      { "id": "2", "name": "เบอริโต้", "price": 280},
+      { "id": "3", "name": "เบอเกอร์หมู", "price": 250}
+    ],
+    "service": "delivery",
+    "address": "87 ถนนรัษฎา ต.ทับเที่ยง อ.เมืองตรัง ตรัง",
+    "phone": "0971633269"
   },
   {
     "id": "hipcafeandbarber",
     "name": "Hip cafe & barber",
     "categories": ["beverage"],
-    "coverImg":
-      "https://ubarn-public.s3-ap-southeast-1.amazonaws.com/data/shop/hipcafeandbarber/cover.jpg",
     "city": "เมือง",
-    "openTime": "10.00 - 20.00"
+    "openTime": "10.00 - 20.00",
+    "menu": [
+      { "id": "1", "name": "อเมริกาโน่", "price": 60},
+      { "id": "2", "name": "โกโก้", "price": 60},
+      { "id": "3", "name": "ชาเขียวมัจฉะ", "price": 65}
+    ],
+    "service": "delivery",
+    "address": "92 ถนน น้ำผุด ตำบล นาตาล่วง อำเภอเมือง จังหวัด ตรัง",
+    "phone": "0993091288"
   },
   {
     "id": "jetyi",
     "name": "ข้าวขาหมูเจ๊หยี่",
     "categories": ["food"],
-    "coverImg":
-      "https://ubarn-public.s3-ap-southeast-1.amazonaws.com/data/shop/jetyi/cover.jpg",
     "city": "ย่านตาขาว",
-    "openTime": "6.00 - 15-00"
+    "openTime": "6.00 - 15.00",
+    "menu": [
+      { "id": "1", "name": "ข้าวขาหมู", "price": 40},
+      { "id": "2", "name": "ข้าวมันไก่/ข้าวหน้าไก่/ข้าวหมูแดง/ข้าวหมูกรอบ", "price": 50},
+      { "id": "3", "name": "เกาเหลาต้มเลือดหมู-เครื่องในหมู", "price": 40}
+    ],
+    "service": "delivery",
+    "address": "หน้าสถานีตำรวจอำเภอห้วยยอด",
+    "phone": "'0871683859"
   }
 ]

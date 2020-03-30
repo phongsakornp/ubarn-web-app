@@ -28,9 +28,16 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             id
             name
             categories
-            coverImg
             city
             openTime
+            menu {
+              id
+              name
+              price
+            }
+            service
+            address
+            phone
           }
         }
       }
