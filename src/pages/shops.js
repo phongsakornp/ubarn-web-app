@@ -23,8 +23,6 @@ const ComponentText = {
   CITY: 'อำเภอ',
 };
 
-const cityList = ['เมือง', 'ย่านตาขาว', 'นาโยง'];
-
 const SelectorBox = ({ id, name, label, imgSrc, checked, onChange }) => {
   const handleChange = evt => {
     onChange(evt.target.checked);
@@ -153,6 +151,8 @@ const Shops = ({ data }) => {
     return included ? [...result, shop] : result;
   }, []);
 
+  const cityList = data.allCityJson.edges.map(edge => edge.node.name);
+
   return (
     <Layout
       renderContent={() => {
@@ -235,7 +235,7 @@ const Shops = ({ data }) => {
                           className="object-cover w-full h-48"
                         />
                         <div className={'flex flex-col p-5'}>
-                          <div className="text-xs font-semibold tracking-wide leading-tight text-gray-600 uppercase">
+                          <div className="text-xs font-semibold leading-tight tracking-wide text-gray-600 uppercase">
                             {`${ComponentText.CITY}${shop.city}`}
                           </div>
                           <h4 className="text-lg font-semibold">{shop.name}</h4>
@@ -266,6 +266,13 @@ export const query = graphql`
           categories
           openTime
           service
+        }
+      }
+    }
+    allCityJson {
+      edges {
+        node {
+          name
         }
       }
     }
