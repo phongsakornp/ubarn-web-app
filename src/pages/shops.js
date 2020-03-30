@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link, graphql } from 'gatsby';
 
+import {
+  LayoutStateContext,
+  LayoutDispatchContext,
+  LayoutActionType,
+} from 'components/context/LayoutContextProvider';
 import Layout from 'components/Layout';
 import Seo from 'components/Seo';
 import foodImg from 'images/food.svg';
@@ -124,34 +129,13 @@ DropdownSelector.defaultProps = {
   onChange: () => {},
 };
 
-const filterReducer = (state, action) => {
-  switch (action.type) {
-    case 'category': {
-      return {
-        ...state,
-        category: {
-          ...state.category,
-          [action.payload.name]: action.payload.checked,
-        },
-      };
-    }
-    case 'city': {
-      return {
-        ...state,
-        city: action.payload.name,
-      };
-    }
-    default: {
-      return state;
-    }
-  }
-};
-
 const Shops = ({ data }) => {
-  const [filter, dispatchFilter] = React.useReducer(filterReducer, {
-    city: cityList[0],
-    category: { food: true },
-  });
+  const dispatchLayout = useContext(LayoutDispatchContext);
+  const layoutState = useContext(LayoutStateContext);
+
+  const {
+    shops: { filter },
+  } = layoutState;
 
   // Filtering based on filter
   const checkedCategories = Object.keys(filter.category).reduce(
@@ -186,7 +170,10 @@ const Shops = ({ data }) => {
                 value={filter.city}
                 options={cityList}
                 onChange={name =>
-                  dispatchFilter({ type: 'city', payload: { name } })
+                  dispatchLayout({
+                    type: LayoutActionType.SHOPS_FILTER_SET_CITY,
+                    payload: { name },
+                  })
                 }
               />
 
@@ -202,8 +189,8 @@ const Shops = ({ data }) => {
                     imgSrc={foodImg}
                     checked={filter.category.food}
                     onChange={checked =>
-                      dispatchFilter({
-                        type: 'category',
+                      dispatchLayout({
+                        type: LayoutActionType.SHOPS_FILTER_CHANGE_CATEGORY,
                         payload: { name: 'food', checked },
                       })
                     }
@@ -216,8 +203,8 @@ const Shops = ({ data }) => {
                       imgSrc={beverageImg}
                       checked={filter.category.beverage}
                       onChange={checked =>
-                        dispatchFilter({
-                          type: 'category',
+                        dispatchLayout({
+                          type: LayoutActionType.SHOPS_FILTER_CHANGE_CATEGORY,
                           payload: { name: 'beverage', checked },
                         })
                       }

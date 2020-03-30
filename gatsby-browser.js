@@ -1,9 +1,10 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/browser-apis/
- */
+import React from 'react';
 
-// You can delete this file if you're not using it
-import "@fortawesome/fontawesome-free/css/all.min.css"
-import "./src/styles/global.css"
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import './src/styles/global.css';
+
+import LayoutContextProvider from './src/components/context/LayoutContextProvider';
+
+export const wrapRootElement = ({ element }) => {
+  return <LayoutContextProvider>{element}</LayoutContextProvider>;
+};
