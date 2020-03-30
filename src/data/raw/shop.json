@@ -5,7 +5,7 @@
     "categories": ["food", "beverage"],
     "coverImg":
       "https://ubarn-public.s3-ap-southeast-1.amazonaws.com/data/shop/judtemcup/cover.jpg",
-    "city": "อำเภอเมือง",
+    "city": "เมือง",
     "openTime": "10.30 - 20.30"
   },
   {
@@ -14,7 +14,7 @@
     "categories": ["beverage"],
     "coverImg":
       "https://ubarn-public.s3-ap-southeast-1.amazonaws.com/data/shop/guava/cover.jpg",
-    "city": "อำเภอเมือง",
+    "city": "เมือง",
     "openTime": "12:00 - 19:00"
   },
   {
@@ -23,7 +23,7 @@
     "categories": ["beverage"],
     "coverImg":
       "https://ubarn-public.s3-ap-southeast-1.amazonaws.com/data/shop/hipcafeandbarber/cover.jpg",
-    "city": "อำเภอเมือง",
+    "city": "เมือง",
     "openTime": "10.00 - 20.00"
   },
   {
@@ -32,7 +32,7 @@
     "categories": ["food"],
     "coverImg":
       "https://ubarn-public.s3-ap-southeast-1.amazonaws.com/data/shop/jetyi/cover.jpg",
-    "city": "อำเภอย่านตาขาว",
+    "city": "ย่านตาขาว",
     "openTime": "6.00 - 15-00"
   }
 ]

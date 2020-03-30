@@ -16,7 +16,7 @@ const ComponentText = {
   BEVERAGE_CATEGORY: 'เครื่องดื่ม',
 };
 
-const cityList = ['ทับเที่ยง', 'ย่านตาขาว', 'นาโยง'];
+const cityList = ['เมือง', 'ย่านตาขาว', 'นาโยง'];
 
 const SelectorBox = ({ id, name, label, imgSrc, onChange }) => {
   const [checked, setChecked] = React.useState(false);
@@ -154,6 +154,20 @@ const Shops = ({ data }) => {
     category: {},
   });
 
+  // Filtering based on filter
+  const checkedCategories = Object.keys(filter.category).reduce(
+    (result, categoryName) =>
+      filter.category[categoryName] ? [...result, categoryName] : result,
+    []
+  );
+  const shopData = data.allShopJson.edges.reduce((result, edge) => {
+    const shop = edge.node;
+    const included =
+      shop.city === filter.city &&
+      checkedCategories.some(category => shop.categories.includes(category));
+    return included ? [...result, shop] : result;
+  }, []);
+
   return (
     <Layout
       renderContent={() => {
@@ -217,25 +231,25 @@ const Shops = ({ data }) => {
                 }
                 style={{ justifyItems: 'center' }}
               >
-                {data.allShopJson.edges.map(({ node }, idx) => {
+                {shopData.map((shop, idx) => {
                   return (
-                    <Link to={`/shops/${node.id}`} key={`${node.name}-${idx}`}>
+                    <Link to={`/shops/${shop.id}`} key={`${shop.name}-${idx}`}>
                       <div
                         className={
                           'flex flex-col w-full overflow-hidden text-gray-900 bg-white border rounded-lg shadow'
                         }
                       >
                         <img
-                          src={node.coverImg}
+                          src={shop.coverImg}
                           alt="Shop cover"
                           className="object-cover w-full h-48"
                         />
                         <div className={'flex flex-col p-5'}>
                           <div className="text-xs font-semibold tracking-wide text-gray-600 uppercase">
-                            {node.city}
+                            {shop.city}
                           </div>
-                          <h4 className="text-lg font-semibold">{node.name}</h4>
-                          <div className="mt-2 text-teal-600 text-sm">{`เปิด: ${node.openTime}`}</div>
+                          <h4 className="text-lg font-semibold">{shop.name}</h4>
+                          <div className="mt-2 text-teal-600 text-sm">{`เปิด: ${shop.openTime}`}</div>
                         </div>
                       </div>
                     </Link>
@@ -259,6 +273,7 @@ export const query = graphql`
           id
           name
           city
+          categories
           openTime
           coverImg
         }
