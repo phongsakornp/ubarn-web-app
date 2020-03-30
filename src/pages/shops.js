@@ -18,12 +18,9 @@ const ComponentText = {
 
 const cityList = ['เมือง', 'ย่านตาขาว', 'นาโยง'];
 
-const SelectorBox = ({ id, name, label, imgSrc, onChange }) => {
-  const [checked, setChecked] = React.useState(false);
+const SelectorBox = ({ id, name, label, imgSrc, checked, onChange }) => {
   const handleChange = evt => {
-    const targetChecked = evt.target.checked;
-    setChecked(targetChecked);
-    onChange(targetChecked);
+    onChange(evt.target.checked);
   };
   return (
     <label htmlFor={id} className="">
@@ -68,9 +65,11 @@ SelectorBox.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   imgSrc: PropTypes.string.isRequired,
+  checked: PropTypes.bool,
   onChange: PropTypes.func,
 };
 SelectorBox.defaultProps = {
+  checked: false,
   onChange: () => {},
 };
 
@@ -151,7 +150,7 @@ const filterReducer = (state, action) => {
 const Shops = ({ data }) => {
   const [filter, dispatchFilter] = React.useReducer(filterReducer, {
     city: cityList[0],
-    category: {},
+    category: { food: true },
   });
 
   // Filtering based on filter
@@ -201,6 +200,7 @@ const Shops = ({ data }) => {
                     name="food"
                     label={ComponentText.FOOD_CATEGORY}
                     imgSrc={foodImg}
+                    checked={filter.category.food}
                     onChange={checked =>
                       dispatchFilter({
                         type: 'category',
@@ -214,6 +214,7 @@ const Shops = ({ data }) => {
                       name="beverage"
                       label={ComponentText.BEVERAGE_CATEGORY}
                       imgSrc={beverageImg}
+                      checked={filter.category.beverage}
                       onChange={checked =>
                         dispatchFilter({
                           type: 'category',
