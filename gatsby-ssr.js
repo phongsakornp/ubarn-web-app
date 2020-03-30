@@ -1,7 +1,7 @@
-const React = require('react');
+import React from 'react';
 
-const LayoutContextProvider = require('./src/components/context/LayoutContextProvider');
+import LayoutContextProvider from './src/components/context/LayoutContextProvider';
 
-exports.wrapRootElement = ({ element }) => {
+export const wrapRootElement = ({ element }) => {
   return <LayoutContextProvider>{element}</LayoutContextProvider>;
 };
