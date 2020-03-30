@@ -47,8 +47,14 @@ const ShopView = ({ pageContext: { shop } }) => {
                   </p>
                 </div>
                 <div className="flex items-center mt-3">
-                  <i className={'text-gray-800 fas fa-phone'}></i>
-                  <div className={'ml-3'}>{shop.phone}</div>
+                  <i className={'text-indigo-600 fas fa-phone'}></i>
+                  <div
+                    className={
+                      'tracking-wider text-indigo-600 font-semibold ml-3'
+                    }
+                  >
+                    {shop.phone}
+                  </div>
                 </div>
               </div>
 
