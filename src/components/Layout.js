@@ -42,7 +42,6 @@ const Layout = ({ renderContent }) => {
           {renderContent({ innerHeight: innerHeight - 62 })}
         </main>
       </div>
-      <footer>© {new Date().getFullYear()}</footer>
     </div>
   );
 };
@@ -53,3 +52,8 @@ Layout.defaultProps = {
   renderContent: () => <div />,
 };
 export default Layout;
+
+/*
+
+      <footer>© {new Date().getFullYear()}</footer>
+*/
