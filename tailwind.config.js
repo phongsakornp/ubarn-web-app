@@ -1,7 +1,11 @@
 module.exports = {
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateRows: {
+        'stat-card-grid': '40px 1fr',
+      },
+    },
   },
   variants: {},
   plugins: [],
-}
+};
