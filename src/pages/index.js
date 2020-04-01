@@ -135,7 +135,7 @@ const IndexPage = () => {
                           <div className="ml-4 text-sm">{`${data.Gender}`}</div>
                           <div className="text-sm ml-2">{`${data.Age} ${ComponentText.CASE_AGE_UNIT}`}</div>
                         </div>
-                        <hr />
+                        {idx === infectData.cases.length - 1 ? null : <hr />}
                       </div>
                     );
                   })}
