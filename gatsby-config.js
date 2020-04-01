@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Ubarn`,
-    description: `Ubarn`,
-    author: `PhongsakornP.`,
+    title: `ZeroCovid`,
+    description: `ZeroCovid`,
+    author: `ZeroCovid Group`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -30,11 +30,11 @@ module.exports = {
     {
       resolve: `gatsby-plugin-postcss`,
       options: {
-        postCssPlugins: [require("tailwindcss"), require("autoprefixer")],
+        postCssPlugins: [require('tailwindcss'), require('autoprefixer')],
       },
     },
     {
-      resolve: "gatsby-plugin-svgr",
+      resolve: 'gatsby-plugin-svgr',
       options: {},
     },
     {
@@ -50,4 +50,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};

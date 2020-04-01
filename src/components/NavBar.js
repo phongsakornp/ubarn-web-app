@@ -119,6 +119,6 @@ NavBar.propTypes = {
   title: PropTypes.node,
 };
 NavBar.defaultProps = {
-  title: 'Ubarn',
+  title: 'ZeroCovid',
 };
 export default NavBar;
