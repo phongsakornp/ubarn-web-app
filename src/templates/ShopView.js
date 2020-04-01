@@ -22,7 +22,7 @@ const ShopView = ({ pageContext: { shop } }) => {
         return (
           <>
             <Seo title="Shop" />
-            <div className={'flex flex-col w-full'}>
+            <div className={'flex flex-col w-full max-w-screen-lg'}>
               <div className="relative">
                 <img
                   src={`${ImageService.SHOPS_URL}/${shop.id}/cover.jpg`}
