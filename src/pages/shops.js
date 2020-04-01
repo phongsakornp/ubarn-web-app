@@ -145,8 +145,9 @@ const Shops = ({ data }) => {
   );
   const shopData = data.allShopJson.edges.reduce((result, edge) => {
     const shop = edge.node;
+
     const included =
-      shop.city === filter.city &&
+      shop.cities.includes(filter.city) &&
       checkedCategories.some(category => shop.categories.includes(category));
     return included ? [...result, shop] : result;
   }, []);
@@ -235,9 +236,6 @@ const Shops = ({ data }) => {
                           className="object-cover w-full h-48"
                         />
                         <div className={'flex flex-col p-5'}>
-                          <div className="text-xs font-semibold leading-tight tracking-wide text-gray-600 uppercase">
-                            {`${ComponentText.CITY}${shop.city}`}
-                          </div>
                           <h4 className="text-lg font-semibold">{shop.name}</h4>
                           <div className="text-teal-600 text-sm mt-2">{`เปิด: ${shop.openTime}`}</div>
                         </div>
@@ -262,7 +260,7 @@ export const query = graphql`
         node {
           id
           name
-          city
+          cities
           categories
           openTime
           service

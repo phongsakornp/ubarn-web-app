@@ -28,7 +28,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             id
             name
             categories
-            city
+            cities
             openTime
             menu {
               id

@@ -1,0 +1,112 @@
+[
+  {
+    "id": "judtemcup",
+    "name": "จัดเต็มcup",
+    "categories": ["food"],
+    "city": "เมือง",
+    "openTime": "10.30 - 20.30",
+    "menu": [
+      { "id": "1", "name": "ข้าวไข่ข้นต้มยำกุ้ง", "price": 99},
+      { "id": "2", "name": "ข้าวไก่ตุ๋นเต้าเจี้ยว", "price": 89},
+      { "id": "3", "name": "ข้าวกะหรี่ไก่กรอบ", "price": 50}
+    ],
+    "service": "pickup",
+    "address": "36/8 ม.4 ต.ควนปริง อ.เมือง จ.ตรัง ใกล้กับมอ.ตรังเพียง 500เมตร",
+    "phone": "0848427664"
+  },
+
+  {
+    "id": "kluaytodvicpet",
+    "name": "กล้วยทอดวิกเพชร",
+    "categories": ["food"],
+    "service": "pickup",
+    "city": "เมือง",
+    "address": "ตลาดวิกเพชร ซ.4 ถ.ห้วยยอด อ.เมือง จ.ตรัง",
+    "phone": "0936765671",
+    "openTime": "10.00 - 15:00",
+    "menu": [
+      { "id": "1", "name": "กล้วยทอด", "price": 20},
+      { "id": "2", "name": "ข้าวเม่าทอด", "price": 20},
+      { "id": "3", "name": "มันทอด", "price": 20}
+    ]
+  },
+
+  {
+    "id": "suansaenahaeha",
+    "name": "สวนเส ณ เฮฮา",
+    "categories": ["food"],
+    "service": "delivery",
+    "city": "เมือง",
+    "address": "105 ม.5 รักษ์จันทน์ ซ.7 นาตาล่วง อ.เมือง ตรัง ทางเข้า ม.ธนธานี",
+    "phone": "0874565939",
+    "openTime": "10:30 - 20:00",
+    "menu": [
+      { "id": "1", "name": "ราดหน้าสวนเส", "price": 99},
+      { "id": "2", "name": "ผัดไทสวนเส", "price": 79},
+      { "id": "3", "name": "ข้าวผัดน้ำพริกลงเรือ", "price": 69}
+    ]
+  },
+ 
+
+  {
+    "id": "",
+    "name": "",
+    "categories": [""],
+    "service": "",
+    "city": "",
+    "address": "",
+    "phone": "",
+    "openTime": "",
+    "menu": [
+      { "id": "1", "name": "", "price": 0},
+      { "id": "2", "name": "", "price": 0},
+      { "id": "3", "name": "", "price": 0}
+    ]
+  },
+
+  {
+    "id": "guava",
+    "name": "Guava",
+    "categories": ["beverage"],
+    "city": "เมือง",
+    "openTime": "12:00 - 19:00",
+    "menu": [
+      { "id": "1", "name": "เสต็กหมู", "price": 330},
+      { "id": "2", "name": "เบอริโต้", "price": 280},
+      { "id": "3", "name": "เบอเกอร์หมู", "price": 250}
+    ],
+    "service": "delivery",
+    "address": "87 ถนนรัษฎา ต.ทับเที่ยง อ.เมืองตรัง ตรัง",
+    "phone": "0971633269"
+  },
+  {
+    "id": "hipcafeandbarber",
+    "name": "Hip cafe & barber",
+    "categories": ["beverage"],
+    "city": "เมือง",
+    "openTime": "10.00 - 20.00",
+    "menu": [
+      { "id": "1", "name": "อเมริกาโน่", "price": 60},
+      { "id": "2", "name": "โกโก้", "price": 60},
+      { "id": "3", "name": "ชาเขียวมัจฉะ", "price": 65}
+    ],
+    "service": "delivery",
+    "address": "92 ถนน น้ำผุด ตำบล นาตาล่วง อำเภอเมือง จังหวัด ตรัง",
+    "phone": "0993091288"
+  },
+  {
+    "id": "jetyi",
+    "name": "ข้าวขาหมูเจ๊หยี่",
+    "categories": ["food"],
+    "city": "ย่านตาขาว",
+    "openTime": "6.00 - 15.00",
+    "menu": [
+      { "id": "1", "name": "ข้าวขาหมู", "price": 40},
+      { "id": "2", "name": "ข้าวมันไก่/ข้าวหน้าไก่/ข้าวหมูแดง/ข้าวหมูกรอบ", "price": 50},
+      { "id": "3", "name": "เกาเหลาต้มเลือดหมู-เครื่องในหมู", "price": 40}
+    ],
+    "service": "delivery",
+    "address": "หน้าสถานีตำรวจอำเภอห้วยยอด",
+    "phone": "'0871683859"
+  }
+]

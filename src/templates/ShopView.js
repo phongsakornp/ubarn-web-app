@@ -11,7 +11,8 @@ const ComponentText = {
   BAHT: 'บาท',
 };
 const ShopView = ({ pageContext: { shop } }) => {
-  //  console.log(`Shop`, shop);
+  // console.log(`Shop`, shop);
+
   const goBack = () => {
     navigate('/shops');
   };
