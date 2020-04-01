@@ -67,8 +67,13 @@ const Market = () => {
           <>
             <Seo title="Marketplace" />
             <div className="flex flex-col items-center justify-center w-full">
-              <div className="flex flex-col items-center">
-                <div className="mt-0 mb-2 text-xl font-normal font-bold leading-normal text-black lg:text-4xl">
+              <div className="flex flex-col items-center w-full">
+                <div
+                  className={
+                    'w-full mt-0 mb-2 text-xl font-normal font-bold' +
+                    ' leading-normal text-center text-black lg:text-4xl'
+                  }
+                >
                   {ComponentText.HERO_TITLE}
                 </div>
               </div>
