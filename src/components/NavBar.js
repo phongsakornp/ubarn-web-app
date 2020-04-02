@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Logo from 'images/logo.png';
+
 const ComponentText = {
   HOME_MENU: 'สถานการณ์',
   HOSPITAL_MENU: 'โรงพยาบาล',
@@ -65,7 +67,7 @@ const NavBar = ({ title }) => {
               }
               href="/"
             >
-              {title}
+              <img src={Logo} alt={title} width={100} />
             </a>
             <button
               className={

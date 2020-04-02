@@ -60,7 +60,18 @@ const ShopView = ({ pageContext: { shop } }) => {
               </div>
 
               <div className={'text-sm font-semibold p-5 mt-4 bg-orange-200'}>
-                {shopServiceToText(shop.service)}
+                {shop.services.reduce((result, service, idx) => {
+                  if (shop.services.length === 1) {
+                    return `${shopServiceToText(service)}`;
+                  }
+                  if (idx === 0) {
+                    return `${shopServiceToText(service)} `;
+                  }
+                  if (idx === shop.services.length - 1) {
+                    return `${result} / ${shopServiceToText(service)}`;
+                  }
+                  return `${result} / ${shopServiceToText(service)} / `;
+                }, ``)}
               </div>
 
               <div className="flex flex-col w-full px-5">

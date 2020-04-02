@@ -263,7 +263,6 @@ export const query = graphql`
           cities
           categories
           openTime
-          service
         }
       }
     }
