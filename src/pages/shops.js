@@ -218,29 +218,35 @@ const Shops = ({ data }) => {
 
               <div
                 className={
-                  'grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-3 w-full p-5'
+                  'grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-3 p-5'
                 }
-                style={{ justifyItems: 'center' }}
+                style={{
+                  justifyItems: 'center',
+                }}
               >
                 {shopData.map((shop, idx) => {
                   return (
-                    <Link to={`/shops/${shop.id}`} key={`${shop.name}-${idx}`}>
-                      <div
-                        className={
-                          'flex flex-col w-full overflow-hidden text-gray-900 bg-white border rounded-lg shadow'
-                        }
-                      >
-                        <img
-                          src={`${ImageService.SHOPS_URL}/${shop.id}/cover.jpg`}
-                          alt="Shop cover"
-                          className="object-cover w-full h-48"
-                        />
-                        <div className={'flex flex-col p-5'}>
-                          <h4 className="text-lg font-semibold">{shop.name}</h4>
-                          <div className="text-teal-600 text-sm mt-2">{`เปิด: ${shop.openTime}`}</div>
+                    <div className="max-w-full" key={`${shop.name}-${idx}`}>
+                      <Link to={`/shops/${shop.id}`}>
+                        <div
+                          className={
+                            'flex flex-col text-gray-900 bg-white border rounded-lg shadow'
+                          }
+                        >
+                          <img
+                            src={`${ImageService.SHOPS_URL}/${shop.id}/cover.jpg`}
+                            alt="Shop cover"
+                            className="object-cover w-full h-48"
+                          />
+                          <div className={'flex flex-col p-5 overflow-hidden'}>
+                            <h4 className="text-lg font-semibold truncate">
+                              {shop.name}
+                            </h4>
+                            <div className="text-teal-600 text-sm mt-2">{`เปิด: ${shop.openTime}`}</div>
+                          </div>
                         </div>
-                      </div>
-                    </Link>
+                      </Link>
+                    </div>
                   );
                 })}
               </div>
@@ -263,7 +269,6 @@ export const query = graphql`
           cities
           categories
           openTime
-          service
         }
       }
     }

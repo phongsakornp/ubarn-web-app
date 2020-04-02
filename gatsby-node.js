@@ -35,7 +35,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               name
               price
             }
-            service
+            services
             address
             phone
           }
