@@ -272,11 +272,6 @@
         "id": 2,
         "name": "ผักไทยออร์แกนิค",
         "price": 25
-      },
-      {
-        "id": null,
-        "name": null,
-        "price": null
       }
     ]
   },
@@ -404,16 +399,6 @@
         "id": 1,
         "name": "เต้าฮวยมะพร้าวอ่อนนมสด",
         "price": 25
-      },
-      {
-        "id": null,
-        "name": null,
-        "price": null
-      },
-      {
-        "id": null,
-        "name": null,
-        "price": null
       }
     ]
   },
@@ -540,16 +525,6 @@
         "id": 1,
         "name": "โอวเอ๋วในไซรัปมะนาวทานเปลือกได้",
         "price": 45
-      },
-      {
-        "id": null,
-        "name": null,
-        "price": null
-      },
-      {
-        "id": null,
-        "name": null,
-        "price": null
       }
     ]
   },
