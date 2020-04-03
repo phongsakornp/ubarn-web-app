@@ -230,7 +230,7 @@ const Shops = ({ data }) => {
                       <Link to={`/shops/${shop.id}`}>
                         <div
                           className={
-                            'flex flex-col text-gray-900 bg-white border rounded-lg shadow'
+                            'flex flex-col overflow-hidden text-gray-900 bg-white border rounded-lg shadow'
                           }
                         >
                           <img
