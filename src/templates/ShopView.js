@@ -1,5 +1,5 @@
 import React from 'react';
-import { navigate } from 'gatsby';
+import { navigate } from '@reach/router';
 
 import { ImageService } from 'data/config';
 import { shopServiceToText } from 'data/convert';
@@ -14,7 +14,7 @@ const ShopView = ({ pageContext: { shop } }) => {
   // console.log(`Shop`, shop);
 
   const goBack = () => {
-    navigate('/shops');
+    navigate(-1);
   };
 
   return (

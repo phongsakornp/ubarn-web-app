@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Logo from 'images/logo.png';
 
 const ComponentText = {
-  HOME_MENU: 'สถานการณ์',
+  HOME_MENU: 'หน้าแรก',
   HOSPITAL_MENU: 'โรงพยาบาล',
   DOATE_MENU: 'บริจาค',
   MARKETPLACE_MENU: 'ร้านค้า',
