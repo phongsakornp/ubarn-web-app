@@ -58,8 +58,8 @@ const Stat = ({
 const IndexPage = ({ data }) => {
   const [infectData, setInfectData] = React.useState({
     cases: [],
-    cures: [],
-    deaths: [],
+    cureCount: 0,
+    deathCount: 0,
   });
 
   React.useEffect(() => {
@@ -68,7 +68,12 @@ const IndexPage = ({ data }) => {
       const caseByProvince = allCase.data.Data.filter(
         data => data.ProvinceId === Api.PROVINCE_ID
       );
-      setInfectData(ifData => ({ ...ifData, cases: [...caseByProvince] }));
+      setInfectData(ifData => ({
+        ...ifData,
+        cases: [...caseByProvince],
+        cureCount: 3,
+        deathCount: 0,
+      }));
     };
     fetchCaseData();
   }, []);
@@ -89,7 +94,7 @@ const IndexPage = ({ data }) => {
               </div>
               <div
                 className={
-                  'grid grid-cols-2 lg:grid-cols-4 gap-4' +
+                  'grid grid-cols-2 grid-rows-2 lg:grid-cols-4 lg:grid-rows-1 gap-4' +
                   ' w-full mt-16 md:px-0 max-w-screen-lg'
                 }
               >
@@ -101,23 +106,23 @@ const IndexPage = ({ data }) => {
 
                 <Stat
                   title={ComponentText.TREAT_STAT_TILE}
-                  value={infectData.cases.length}
-                  cardClassName="bg-orange-500 hidden md:flex"
+                  value={infectData.cases.length - infectData.cureCount}
+                  cardClassName="flex bg-orange-500"
                   titleClassName="text-orange-200"
                   valueClassName="text-orange-200"
                 />
 
                 <Stat
                   title={ComponentText.CURE_STAT_TITLE}
-                  value={infectData.cures.length}
-                  cardClassName="bg-green-600 hidden lg:flex"
+                  value={infectData.cureCount}
+                  cardClassName="flex bg-green-600"
                   titleClassName="text-green-200"
                   valueClassName="text-green-200"
                 />
 
                 <Stat
                   title={ComponentText.DEATH_STAT_TITLE}
-                  value={infectData.deaths.length}
+                  value={infectData.deathCount}
                   cardClassName="bg-black"
                   titleClassName="text-gray-200"
                   valueClassName="text-gray-200"
@@ -171,7 +176,7 @@ const IndexPage = ({ data }) => {
                   );
                 })}
               </div>
-              <div className="pb-12 pt-4">
+              <div className="pt-4 pb-12">
                 <button
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded"
                   onClick={() => navigate('/shops')}
