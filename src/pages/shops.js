@@ -1,15 +1,15 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 
 import {
   LayoutStateContext,
   LayoutDispatchContext,
   LayoutActionType,
 } from 'components/context/LayoutContextProvider';
-import { ImageService } from 'data/config';
 import Layout from 'components/Layout';
 import Seo from 'components/Seo';
+import { ShopListItem } from 'components/shop';
 import foodImg from 'images/food.svg';
 import beverageImg from 'images/beverage.svg';
 
@@ -227,25 +227,7 @@ const Shops = ({ data }) => {
                 {shopData.map((shop, idx) => {
                   return (
                     <div className="max-w-full" key={`${shop.name}-${idx}`}>
-                      <Link to={`/shops/${shop.id}`}>
-                        <div
-                          className={
-                            'flex flex-col overflow-hidden text-gray-900 bg-white border rounded-lg shadow'
-                          }
-                        >
-                          <img
-                            src={`${ImageService.SHOPS_URL}/${shop.id}/cover.jpg`}
-                            alt="Shop cover"
-                            className="object-cover w-full h-48"
-                          />
-                          <div className={'flex flex-col p-5 overflow-hidden'}>
-                            <h4 className="text-lg font-semibold truncate">
-                              {shop.name}
-                            </h4>
-                            <div className="text-teal-600 text-sm mt-2">{`เปิด: ${shop.openTime}`}</div>
-                          </div>
-                        </div>
-                      </Link>
+                      <ShopListItem shop={shop} />
                     </div>
                   );
                 })}

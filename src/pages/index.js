@@ -1,9 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import { graphql, navigate } from 'gatsby';
 
 import Layout from '../components/Layout';
 import Seo from '../components/Seo';
+import { ShopListItem } from 'components/shop';
 
 const ComponentText = {
   HERO_TITLE: 'สถานการณ์ COVID-19 จังหวัดตรัง',
@@ -16,6 +18,8 @@ const ComponentText = {
   CASE_SEX: 'เพศ',
   CASE_AGE: 'อายุ',
   CASE_AGE_UNIT: 'ปี',
+  SHOP_SECTION_TITLE: 'ร้านค้า',
+  SHOP_SECTION_MORE_BUTTON: 'ดูร้านค้าเพิ่ม',
 };
 
 const Api = {
@@ -51,7 +55,7 @@ const Stat = ({
   );
 };
 
-const IndexPage = () => {
+const IndexPage = ({ data }) => {
   const [infectData, setInfectData] = React.useState({
     cases: [],
     cures: [],
@@ -69,13 +73,15 @@ const IndexPage = () => {
     fetchCaseData();
   }, []);
 
+  const shopData = data.allShopJson.edges.slice(0, 6).map(edge => edge.node);
+
   return (
     <Layout
       renderContent={() => {
         return (
           <>
             <Seo title="Home" />
-            <div className="flex flex-col items-center justify-center w-full h-full py-12 bg-gray-800">
+            <div className="flex flex-col items-center justify-center w-full h-full px-5 py-12 bg-gray-800">
               <div className="flex flex-col items-center">
                 <div className="mt-0 mb-2 text-xl font-normal font-bold leading-normal text-gray-200 lg:text-4xl">
                   {ComponentText.HERO_TITLE}
@@ -84,7 +90,7 @@ const IndexPage = () => {
               <div
                 className={
                   'grid grid-cols-2 lg:grid-cols-4 gap-4' +
-                  ' w-full px-5 mt-16 md:px-0 max-w-screen-md'
+                  ' w-full mt-16 md:px-0 max-w-screen-lg'
                 }
               >
                 <Stat
@@ -118,8 +124,8 @@ const IndexPage = () => {
                 />
               </div>
 
-              <div className="flex items-center justify-center w-full mt-8 max-w-screen-md">
-                <div className="flex flex-col w-full mx-5 bg-gray-400 rounded md:mx-0">
+              <div className="flex items-center justify-center w-full mt-8 max-w-screen-lg">
+                <div className="flex flex-col w-full bg-gray-400 rounded">
                   {infectData.cases.map((data, idx) => {
                     const confirmDate = moment(data.ConfirmDate, 'YYYY-MM-DD');
                     return (
@@ -133,13 +139,45 @@ const IndexPage = () => {
                             'D MMM YY'
                           )}`}</div>
                           <div className="ml-4 text-sm">{`${data.Gender}`}</div>
-                          <div className="text-sm ml-2">{`${data.Age} ${ComponentText.CASE_AGE_UNIT}`}</div>
+                          <div className="ml-2 text-sm">{`${data.Age} ${ComponentText.CASE_AGE_UNIT}`}</div>
                         </div>
                         {idx === infectData.cases.length - 1 ? null : <hr />}
                       </div>
                     );
                   })}
                 </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center justify-center w-full px-5 max-w-screen-lg">
+              <div className="flex flex-col items-center">
+                <div className="py-4 mt-16 text-lg font-bold leading-normal text-black lg:text-2xl">
+                  {ComponentText.SHOP_SECTION_TITLE}
+                </div>
+              </div>
+              <div
+                className={
+                  'grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-3 py-5'
+                }
+                style={{
+                  justifyItems: 'center',
+                }}
+              >
+                {shopData.map((shop, idx) => {
+                  return (
+                    <div className="max-w-full" key={`${shop.name}-${idx}`}>
+                      <ShopListItem shop={shop} />
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="pb-12 pt-4">
+                <button
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded"
+                  onClick={() => navigate('/shops')}
+                >
+                  {ComponentText.SHOP_SECTION_MORE_BUTTON}
+                </button>
               </div>
             </div>
           </>
@@ -150,3 +188,19 @@ const IndexPage = () => {
 };
 
 export default IndexPage;
+
+export const query = graphql`
+  query {
+    allShopJson {
+      edges {
+        node {
+          id
+          name
+          cities
+          categories
+          openTime
+        }
+      }
+    }
+  }
+`;
