@@ -71,7 +71,7 @@ const IndexPage = ({ data }) => {
       setInfectData(ifData => ({
         ...ifData,
         cases: [...caseByProvince],
-        cureCount: 3,
+        cureCount: 6,
         deathCount: 0,
       }));
     };
