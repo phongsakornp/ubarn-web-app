@@ -1,15 +1,52 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
-
-// You can delete this file if you're not using it
 const path = require('path');
 const slug = require(`slug`);
 const { slash } = require(`gatsby-core-utils`);
+const axios = require(`axios`);
 
-exports.onCreateWebpackConfig = ({ stage, actions }) => {
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
+exports.sourceNodes = async ({
+  actions,
+  createNodeId,
+  createContentDigest,
+}) => {
+  const shopResult = await axios.get(
+    `${process.env.JSON_DATASOURCE_URL}/shop.json`
+  );
+  shopResult.data.forEach(shop => {
+    const node = {
+      ...shop,
+      shopId: `${shop.id}`,
+      // Needs to be global unique
+      id: createNodeId(`shop-${shop.id}`),
+      internal: {
+        type: 'Shop',
+        contentDigest: createContentDigest(shop),
+      },
+    };
+    actions.createNode(node);
+  });
+
+  const cityResult = await axios.get(
+    `${process.env.JSON_DATASOURCE_URL}/city.json`
+  );
+  cityResult.data.forEach(city => {
+    const node = {
+      ...city,
+      // Needs to be global unique
+      id: createNodeId(`city-${city.name}`),
+      internal: {
+        type: 'City',
+        contentDigest: createContentDigest(city),
+      },
+    };
+    actions.createNode(node);
+  });
+};
+
+exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     resolve: {
       modules: [path.resolve(__dirname, 'src'), 'node_modules'],
@@ -17,15 +54,13 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
   });
 };
 
-exports.createPages = async ({ graphql, actions, reporter }) => {
-  const { createPage } = actions;
-
-  const shopData = await graphql(`
+exports.createPages = async ({ actions, graphql }) => {
+  const shopDataResult = await graphql(`
     query {
-      allShopJson {
+      allShop {
         edges {
           node {
-            id
+            shopId
             name
             categories
             cities
@@ -44,23 +79,20 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     }
   `);
 
-  if (shopData.errors) {
+  if (shopDataResult.errors) {
     reporter.panicOnBuild(`Error while running GraphQL query.`);
     return;
   }
 
-  // console.log(JSON.stringify(shopData, null, 4));
-
   const shopTemplate = path.resolve(`src/templates/ShopView.js`);
 
-  shopData.data.allShopJson.edges.forEach(edge => {
-    createPage({
-      path: `/shops/${slug(edge.node.id)}/`,
+  shopDataResult.data.allShop.edges.forEach(edge => {
+    const shop = edge.node;
+    actions.createPage({
+      path: `/shops/${slug(shop.shopId)}/`,
       component: slash(shopTemplate),
       context: {
-        shop: {
-          ...edge.node,
-        },
+        shop,
       },
     });
   });

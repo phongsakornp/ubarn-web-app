@@ -26,7 +26,7 @@ const ShopView = ({ pageContext: { shop } }) => {
             <div className={'flex flex-col w-full max-w-screen-lg'}>
               <div className="relative">
                 <img
-                  src={`${ImageService.SHOPS_URL}/${shop.id}/cover.jpg`}
+                  src={`${ImageService.SHOPS_URL}/${shop.shopId}/cover.jpg`}
                   alt="Shop cover"
                   className="object-cover w-full h-48"
                 />
@@ -94,7 +94,7 @@ const ShopView = ({ pageContext: { shop } }) => {
                           </div>
                         </div>
                         <img
-                          src={`${ImageService.SHOPS_URL}/${shop.id}/menu-${menu.id}.jpg`}
+                          src={`${ImageService.SHOPS_URL}/${shop.shopId}/menu-${menu.id}.jpg`}
                           alt="Shop cover"
                           className="object-cover w-20 h-20 rounded-lg"
                         />

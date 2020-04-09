@@ -37,14 +37,15 @@ module.exports = {
       resolve: 'gatsby-plugin-svgr',
       options: {},
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `data`,
-        path: `${__dirname}/src/data/raw/`,
-        ignore: [`**/\.*`], // ignore files starting with a dot
-      },
-    },
+    //    {
+    // resolve: `gatsby-source-filesystem`,
+    // options: {
+    //  name: `data`,
+    // path: `${__dirname}/src/data/raw/`,
+    // ignore files starting with a dot
+    //     ignore: [`**/\.*`],
+    // },
+    // },
     `gatsby-transformer-json`,
     {
       resolve: 'gatsby-plugin-google-analytics',

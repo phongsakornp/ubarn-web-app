@@ -143,7 +143,7 @@ const Shops = ({ data }) => {
       filter.category[categoryName] ? [...result, categoryName] : result,
     []
   );
-  const shopData = data.allShopJson.edges.reduce((result, edge) => {
+  const shopData = data.allShop.edges.reduce((result, edge) => {
     const shop = edge.node;
 
     const included =
@@ -152,7 +152,7 @@ const Shops = ({ data }) => {
     return included ? [...result, shop] : result;
   }, []);
 
-  const cityList = data.allCityJson.edges.map(edge => edge.node.name);
+  const cityList = data.allCity.edges.map(edge => edge.node.name);
 
   return (
     <Layout
@@ -243,10 +243,10 @@ export default Shops;
 
 export const query = graphql`
   query {
-    allShopJson {
+    allShop {
       edges {
         node {
-          id
+          shopId
           name
           cities
           categories
@@ -254,7 +254,7 @@ export const query = graphql`
         }
       }
     }
-    allCityJson {
+    allCity {
       edges {
         node {
           name
