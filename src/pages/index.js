@@ -78,7 +78,7 @@ const IndexPage = ({ data }) => {
     fetchCaseData();
   }, []);
 
-  const shopData = data.allShopJson.edges.slice(0, 6).map(edge => edge.node);
+  const shopData = data.allShop.edges.slice(0, 6).map(edge => edge.node);
 
   return (
     <Layout
@@ -196,10 +196,10 @@ export default IndexPage;
 
 export const query = graphql`
   query {
-    allShopJson {
+    allShop {
       edges {
         node {
-          id
+          shopId
           name
           cities
           categories
