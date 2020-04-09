@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import moment from 'moment';
 import { graphql, navigate } from 'gatsby';
 
@@ -10,21 +9,17 @@ import { ShopListItem } from 'components/shop';
 const ComponentText = {
   HERO_TITLE: 'สถานการณ์ COVID-19 จังหวัดตรัง',
   HERO_SUBTITLE: '',
-  INFECT_TOTAL_STAT_TITLE: 'ติดเชื้อ',
-  TREAT_STAT_TILE: 'กำลังรักษา',
-  CURE_STAT_TITLE: 'หายแล้ว',
-  DEATH_STAT_TITLE: 'เสียชีวิต',
+  DAILYREPORT_INFECTED_TITLE: 'ติดเชื้อ',
+  DAILYREPORT_THREATING_TITLE: 'กำลังรักษา',
+  DAILYREPORT_CURED_TITLE: 'หายแล้ว',
+  DAILYREPORT_DEATH_TITLE: 'เสียชีวิต',
+  DAILYREPORT_UPDATEDAT_TITLE: 'ข้อมูล ณ วันที่',
   CASE_NUMBER: '#',
   CASE_SEX: 'เพศ',
   CASE_AGE: 'อายุ',
   CASE_AGE_UNIT: 'ปี',
   SHOP_SECTION_TITLE: 'ร้านค้า',
   SHOP_SECTION_MORE_BUTTON: 'ดูร้านค้าเพิ่ม',
-};
-
-const Api = {
-  CASES_URL: 'https://covid19.th-stat.com/api/open/cases',
-  PROVINCE_ID: 15,
 };
 
 const Stat = ({
@@ -56,27 +51,14 @@ const Stat = ({
 };
 
 const IndexPage = ({ data }) => {
-  const [infectData, setInfectData] = React.useState({
-    cases: [],
-    cureCount: 0,
-    deathCount: 0,
-  });
-
-  React.useEffect(() => {
-    const fetchCaseData = async () => {
-      const allCase = await axios.get(Api.CASES_URL);
-      const caseByProvince = allCase.data.Data.filter(
-        data => data.ProvinceId === Api.PROVINCE_ID
-      );
-      setInfectData(ifData => ({
-        ...ifData,
-        cases: [...caseByProvince],
-        cureCount: 5,
-        deathCount: 0,
-      }));
+  const [dailyReport] = React.useState(() => {
+    const { infected = 0, cured = 0, death = 0 } = data.dailyReport;
+    return {
+      infected,
+      cured,
+      death,
     };
-    fetchCaseData();
-  }, []);
+  });
 
   const shopData = data.allShop.edges.slice(0, 6).map(edge => edge.node);
 
@@ -86,7 +68,7 @@ const IndexPage = ({ data }) => {
         return (
           <>
             <Seo title="Home" />
-            <div className="flex flex-col items-center justify-center w-full h-full px-5 py-12 bg-gray-800">
+            <div className="flex flex-col items-center justify-center w-full h-full px-5 py-16 bg-gray-800">
               <div className="flex flex-col items-center">
                 <div className="mt-0 mb-2 text-xl font-normal font-bold leading-normal text-gray-200 lg:text-4xl">
                   {ComponentText.HERO_TITLE}
@@ -99,58 +81,56 @@ const IndexPage = ({ data }) => {
                 }
               >
                 <Stat
-                  title={ComponentText.INFECT_TOTAL_STAT_TITLE}
-                  value={infectData.cases.length}
+                  title={ComponentText.DAILYREPORT_INFECTED_TITLE}
+                  value={dailyReport.infected}
                   cardClassName="bg-red-600"
                 />
 
                 <Stat
-                  title={ComponentText.TREAT_STAT_TILE}
-                  value={infectData.cases.length - infectData.cureCount}
+                  title={ComponentText.DAILYREPORT_THREATING_TITLE}
+                  value={dailyReport.infected - dailyReport.cured}
                   cardClassName="flex bg-orange-500"
                   titleClassName="text-orange-200"
                   valueClassName="text-orange-200"
                 />
 
                 <Stat
-                  title={ComponentText.CURE_STAT_TITLE}
-                  value={infectData.cureCount}
+                  title={ComponentText.DAILYREPORT_CURED_TITLE}
+                  value={dailyReport.cured}
                   cardClassName="flex bg-green-600"
                   titleClassName="text-green-200"
                   valueClassName="text-green-200"
                 />
 
                 <Stat
-                  title={ComponentText.DEATH_STAT_TITLE}
-                  value={infectData.deathCount}
+                  title={ComponentText.DAILYREPORT_DEATH_TITLE}
+                  value={dailyReport.death}
                   cardClassName="bg-black"
                   titleClassName="text-gray-200"
                   valueClassName="text-gray-200"
                 />
               </div>
-
-              <div className="flex items-center justify-center w-full mt-8 max-w-screen-lg">
-                <div className="flex flex-col w-full bg-gray-400 rounded">
-                  {infectData.cases.map((data, idx) => {
-                    const confirmDate = moment(data.ConfirmDate, 'YYYY-MM-DD');
-                    return (
-                      <div
-                        className="flex flex-col"
-                        key={`${data.ConfirmDate}-${idx}`}
-                      >
-                        <div className="flex items-center p-3 text-gray-700 ">
-                          <div className="w-12 text-sm font-semibold">{`${ComponentText.CASE_NUMBER}${data.No}`}</div>
-                          <div className="w-20 ml-4 text-sm">{`${confirmDate.format(
-                            'D MMM YY'
-                          )}`}</div>
-                          <div className="ml-4 text-sm">{`${data.Gender}`}</div>
-                          <div className="ml-2 text-sm">{`${data.Age} ${ComponentText.CASE_AGE_UNIT}`}</div>
-                        </div>
-                        {idx === infectData.cases.length - 1 ? null : <hr />}
-                      </div>
-                    );
-                  })}
+              <div className="flex items-center justify-end w-full mt-8 md:px-0 max-w-screen-lg">
+                <div className="text-gray-500">
+                  {ComponentText.DAILYREPORT_UPDATEDAT_TITLE}
                 </div>
+                <div className="ml-2 text-gray-500">
+                  {moment(data.dailyReport.updatedAt, 'YYYY-MM-DD').format(
+                    'LL'
+                  )}
+                </div>
+                <a
+                  className="ml-2 bg-blue-700 rounded-lg opacity-75"
+                  href={data.dailyReport.source.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i
+                    className={
+                      'fas fa-external-link-alt text-lg text-white px-3 py-2'
+                    }
+                  ></i>
+                </a>
               </div>
             </div>
 
@@ -205,6 +185,16 @@ export const query = graphql`
           categories
           openTime
         }
+      }
+    }
+    dailyReport {
+      infected
+      cured
+      death
+      updatedAt
+      source {
+        name
+        url
       }
     }
   }

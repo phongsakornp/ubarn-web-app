@@ -44,6 +44,20 @@ exports.sourceNodes = async ({
     };
     actions.createNode(node);
   });
+
+  const dailyReportResult = await axios.get(
+    `${process.env.JSON_DATASOURCE_URL}/dailyReport.json`
+  );
+  const dailyReportData = dailyReportResult.data;
+  actions.createNode({
+    ...dailyReportData,
+    // Needs to be global unique
+    id: createNodeId(`dailyReport-${dailyReportData.updatedAt}`),
+    internal: {
+      type: 'DailyReport',
+      contentDigest: createContentDigest(dailyReportData),
+    },
+  });
 };
 
 exports.onCreateWebpackConfig = ({ actions }) => {
