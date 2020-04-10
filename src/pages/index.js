@@ -9,7 +9,7 @@ import { ShopListItem } from 'components/shop';
 const ComponentText = {
   HERO_TITLE: 'สถานการณ์ COVID-19 จังหวัดตรัง',
   HERO_SUBTITLE: '',
-  DONATE_TITLE_1: 'ขอเชิญร่วมบริจาคเงินให้โรงพยาบาล',
+  DONATE_TITLE_1: 'ขอเชิญร่วมบริจาคให้โรงพยาบาล',
   DONATE_TITLE_2: '‘ฝ่าวิกฤต สู้ภัยโควิด’',
   DONATE_TITLE_3: 'เราจะผ่านวิกฤตนี้ไปด้วยกัน',
   DONATE_BUTTON_TITLE: 'ดูข้อมูลเพิ่ม',
