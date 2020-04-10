@@ -5,6 +5,7 @@ import * as R from 'ramda';
 // import { shopServiceToText } from 'data/convert';
 import Layout from 'components/Layout';
 import Seo from 'components/Seo';
+import * as bankSVG from 'images/bank';
 
 const ComponentText = {
   DONATE_NEED_SECTION_TITLE: 'ขอรับบริจาคอุปกรณ์ทางการแพทย์',
@@ -14,19 +15,15 @@ const ComponentText = {
   BANK_ACCOUNT_TITLE: 'เลขที่บัญชี',
 };
 
-const bankInfo = {
-  ktb: 'กรุงไทย',
-  scb: 'ไทยพาณิชย์',
-  bbl: 'กรุงเทพ',
-  baac: 'ธกส.',
-  bay: 'กรุงศรีอยุธยา',
-  kbank: 'กสิกรไทย',
-  citi: 'ซิตี้แบงค์',
-  tmb: 'ทหารไทย',
-  tbank: 'ธนชาติ',
-  ibank: 'อิสลาม',
-  gsb: 'ออมสิน',
-  ghb: 'ธอส.',
+const allBank = {
+  ktb: { name: 'กรุงไทย', icon: bankSVG.ktb, color: '#1ba5e1' },
+  scb: { name: 'ไทยพาณิชย์', icon: bankSVG.scb, color: '#4e2e7f' },
+  bbl: { name: 'กรุงเทพ', icon: bankSVG.bbl, color: '#1e4598' },
+  bay: { name: 'กรุงศรีอยุธยา', icon: bankSVG.bay, color: '#fec43b' },
+  kbank: { name: 'กสิกรไทย', icon: bankSVG.kbank, color: '#138f2d' },
+  tmb: { name: 'ทหารไทย', icon: bankSVG.tmb, color: '#1279be' },
+  tbank: { name: 'ธนชาติ', icon: bankSVG.tbank, color: '#fc4f1f' },
+  gsb: { name: 'ออมสิน', icon: bankSVG.gsb, color: '#eb198d' },
 };
 
 const HospitalView = ({ pageContext: { hospital, siteConfig } }) => {
@@ -140,10 +137,15 @@ const HospitalView = ({ pageContext: { hospital, siteConfig } }) => {
 
                       case 'bank-transfer': {
                         const bankId = R.path(['bank', 'id'])(by);
+                        const bankInfo = R.has(bankId, allBank)
+                          ? allBank[bankId]
+                          : null;
                         const bank = {
-                          name: R.has(bankId, bankInfo) ? bankInfo[bankId] : '',
+                          name: bankInfo && bankInfo.name,
                           branch: R.path(['bank', 'branch'])(by),
                           account: R.path(['bank', 'account'])(by),
+                          icon: bankInfo.icon,
+                          color: bankInfo.color,
                         };
                         const infos = by.infos || [];
                         return (
@@ -154,16 +156,30 @@ const HospitalView = ({ pageContext: { hospital, siteConfig } }) => {
                             <div className="py-4 font-bold text-center text-pink-100 bg-pink-500">
                               {`${R.path(['title'])(by)}`}
                             </div>
-                            <div className="pt-5 font-semibold text-center text-pink-100">
-                              {`
+                            <div className="flex items-center justify-center mt-5">
+                              <div
+                                style={{ background: bankInfo.color }}
+                                className="w-12 h-12 p-2 rounded-lg lg:w-16 lg:h-16"
+                              >
+                                <img
+                                  src={bankInfo.icon}
+                                  alt="bank"
+                                  className="object-contain w-full h-full"
+                                />
+                              </div>
+                              <div className="flex flex-col justify-center ml-4">
+                                <div className="font-semibold text-pink-100">
+                                  {`
                                 ${ComponentText.BANK_TITLE}${bank.name}
                                 ${ComponentText.BANK_BRANCH_TITLE}${bank.branch}
                               `}
+                                </div>
+                                <div className="font-semibold text-pink-100">
+                                  {`${ComponentText.BANK_ACCOUNT_TITLE} ${bank.account}`}
+                                </div>
+                              </div>
                             </div>
-                            <div className="font-semibold text-center text-pink-100">
-                              {`${ComponentText.BANK_ACCOUNT_TITLE} ${bank.account}`}
-                            </div>
-                            <div className="mt-2 pb-5">
+                            <div className="mt-4 pb-5">
                               {infos.map(info => {
                                 return (
                                   <div
@@ -178,6 +194,33 @@ const HospitalView = ({ pageContext: { hospital, siteConfig } }) => {
                           </div>
                         );
                       }
+
+                      case 'note': {
+                        const infos = by.infos || [];
+                        return (
+                          <div
+                            key={`${by.type}-${idx}`}
+                            className="overflow-hidden bg-teal-600 rounded-lg"
+                          >
+                            <div className="py-4 font-bold text-center text-pink-100 bg-teal-500">
+                              {`${R.path(['title'])(by)}`}
+                            </div>
+                            <div className="py-5">
+                              {infos.map(info => {
+                                return (
+                                  <div
+                                    key={info}
+                                    className="text-center text-pink-100 leading-7"
+                                  >
+                                    {info}
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        );
+                      }
+
                       default: {
                         return null;
                       }
