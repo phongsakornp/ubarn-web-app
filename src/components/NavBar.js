@@ -6,7 +6,6 @@ import Logo from 'images/logo.png';
 const ComponentText = {
   HOME_MENU: 'หน้าแรก',
   HOSPITAL_MENU: 'โรงพยาบาล',
-  DOATE_MENU: 'บริจาค',
   MARKETPLACE_MENU: 'ร้านค้า',
 };
 
@@ -90,7 +89,6 @@ const NavBar = ({ title }) => {
             <ul className="flex flex-col flex-grow mr-auto list-none lg:flex-row lg:justify-center lg:items-center">
               <MenuItem title={ComponentText.HOME_MENU} href="/" />
               <MenuItem title={ComponentText.HOSPITAL_MENU} href="/hospital" />
-              <MenuItem title={ComponentText.DOATE_MENU} href="/donate" />
               <MenuItem title={ComponentText.MARKETPLACE_MENU} href="/shops" />
             </ul>
 
