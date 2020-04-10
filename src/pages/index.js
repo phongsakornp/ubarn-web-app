@@ -9,6 +9,10 @@ import { ShopListItem } from 'components/shop';
 const ComponentText = {
   HERO_TITLE: 'สถานการณ์ COVID-19 จังหวัดตรัง',
   HERO_SUBTITLE: '',
+  DONATE_TITLE_1: 'ขอเชิญร่วมบริจาคเงินให้โรงพยาบาล',
+  DONATE_TITLE_2: '‘ฝ่าวิกฤต สู้ภัยโควิด’',
+  DONATE_TITLE_3: 'เราจะผ่านวิกฤตนี้ไปด้วยกัน',
+  DONATE_BUTTON_TITLE: 'ดูข้อมูลเพิ่ม',
   DAILYREPORT_INFECTED_TITLE: 'ติดเชื้อ',
   DAILYREPORT_THREATING_TITLE: 'กำลังรักษา',
   DAILYREPORT_CURED_TITLE: 'หายแล้ว',
@@ -134,6 +138,37 @@ const IndexPage = ({ data }) => {
               </div>
             </div>
 
+            <div
+              className="flex flex-col items-center justify-center w-full py-10"
+              style={{
+                backgroundImage: `
+                linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url(${data.siteConfig.path.etc}/together.jpg)
+                `,
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+              }}
+            >
+              <div className="flex flex-col items-center opacity-100">
+                <div className="mt-12 text-lg font-bold leading-normal text-pink-900 opacity-100 lg:text-2xl">
+                  {ComponentText.DONATE_TITLE_1}
+                </div>
+                <div className="mt-2 text-lg font-bold leading-normal text-pink-900 lg:text-2xl">
+                  {ComponentText.DONATE_TITLE_2}
+                </div>
+                <div className="mt-2 text-lg font-bold leading-normal text-pink-900 lg:text-2xl">
+                  {ComponentText.DONATE_TITLE_3}
+                </div>
+                <div className="mt-8 mb-12">
+                  <button
+                    className="px-8 py-2 font-bold text-white bg-pink-500 rounded hover:bg-pink-700"
+                    onClick={() => navigate('/hospitals')}
+                  >
+                    {ComponentText.DONATE_BUTTON_TITLE}
+                  </button>
+                </div>
+              </div>
+            </div>
+
             <div className="flex flex-col items-center justify-center w-full px-5 max-w-screen-lg">
               <div className="flex flex-col items-center">
                 <div className="py-4 mt-16 text-lg font-bold leading-normal text-black lg:text-2xl">
@@ -180,6 +215,7 @@ export const query = graphql`
       path {
         shop
         hospital
+        etc
       }
     }
     allShop {

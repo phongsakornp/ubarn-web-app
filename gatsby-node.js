@@ -105,6 +105,7 @@ exports.createPages = async ({ actions, graphql }) => {
         path {
           shop
           hospital
+          etc
         }
         hospital {
           equipments {
