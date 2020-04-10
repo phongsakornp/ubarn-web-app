@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'gatsby';
 
 import Layout from '../components/Layout';
 import Seo from '../components/Seo';
@@ -9,6 +10,7 @@ const ComponentText = {
   HOSPITAL_MEDICAL_NEED_TITLE: 'ความต้องการ',
 };
 
+/*
 const medicalText = {
   fMask: 'หน้ากากอนามัยชนิดใช้แล้วทิ้ง',
   n95Mask: 'หน้ากาก N95',
@@ -56,17 +58,19 @@ const huayyod = {
     thermoscan: { value: 5 },
   },
 };
+*/
 
-const hospitalList = [trang, huayyod];
+// const hospitalList = [trang, huayyod];
 
-const Market = () => {
+const Hospital = ({ data }) => {
+  const hospitalData = data.allHospital.edges.map(edge => edge.node);
   return (
     <Layout
       renderContent={() => {
         return (
           <>
             <Seo title="Marketplace" />
-            <div className="flex flex-col items-center justify-center w-full">
+            <div className="flex flex-col items-center justify-center w-full h-full py-8 bg-indigo-100">
               <div className="flex flex-col items-center w-full">
                 <div
                   className={
@@ -77,7 +81,50 @@ const Market = () => {
                   {ComponentText.HERO_TITLE}
                 </div>
               </div>
-              <div className="flex flex-col w-full max-w-screen-lg">
+              <div className="flex flex-col w-full py-4 bg-indigo-100 max-w-screen-lg">
+                {hospitalData.map(hospital => {
+                  return (
+                    <div key={hospital.hospitalId}>
+                      <Link to={`/hospitals/${hospital.hospitalId}`}>
+                        <div className="flex items-center p-5 mx-5 mt-5 bg-white rounded md:mx-0">
+                          <div className="w-full text-lg font-semibold">
+                            {hospital.name}
+                          </div>
+                          <i
+                            className={
+                              'fas fa-chevron-right text-lg text-indigo-500'
+                            }
+                          ></i>
+                        </div>
+                      </Link>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </>
+        );
+      }}
+    />
+  );
+};
+export default Hospital;
+
+export const query = graphql`
+  query {
+    allHospital {
+      edges {
+        node {
+          hospitalId
+          name
+        }
+      }
+    }
+  }
+`;
+
+/*
+
                 {hospitalList.map(hospital => {
                   return (
                     <div className="flex flex-col p-5 mx-5 mt-5 bg-indigo-100 rounded md:mx-0">
@@ -115,12 +162,5 @@ const Market = () => {
                     </div>
                   );
                 })}
-              </div>
-            </div>
-          </>
-        );
-      }}
-    />
-  );
-};
-export default Market;
+
+*/

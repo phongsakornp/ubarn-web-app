@@ -227,7 +227,7 @@ const Shops = ({ data }) => {
                 {shopData.map((shop, idx) => {
                   return (
                     <div className="max-w-full" key={`${shop.name}-${idx}`}>
-                      <ShopListItem shop={shop} />
+                      <ShopListItem shop={shop} siteConfig={data.siteConfig} />
                     </div>
                   );
                 })}
@@ -243,6 +243,12 @@ export default Shops;
 
 export const query = graphql`
   query {
+    siteConfig {
+      path {
+        shop
+        hospital
+      }
+    }
     allShop {
       edges {
         node {
