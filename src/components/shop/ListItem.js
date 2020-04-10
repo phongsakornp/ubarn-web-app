@@ -1,9 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
-import { ImageService } from 'data/config';
-
-const ListItem = ({ shop }) => {
+const ListItem = ({ shop, siteConfig }) => {
   return (
     <Link to={`/shops/${shop.shopId}`}>
       <div
@@ -12,7 +10,7 @@ const ListItem = ({ shop }) => {
         }
       >
         <img
-          src={`${ImageService.SHOPS_URL}/${shop.shopId}/cover.jpg`}
+          src={`${siteConfig.path.shop}/${shop.shopId}/cover.jpg`}
           alt="Shop cover"
           className="object-cover w-full h-48"
         />

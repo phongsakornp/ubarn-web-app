@@ -12,6 +12,19 @@ exports.sourceNodes = async ({
   createNodeId,
   createContentDigest,
 }) => {
+  const siteConfigResult = await axios.get(
+    `${process.env.JSON_DATASOURCE_URL}/site-config.json`
+  );
+  const siteConfigData = siteConfigResult.data;
+  actions.createNode({
+    ...siteConfigData,
+    id: createNodeId(`siteConfig`),
+    internal: {
+      type: 'SiteConfig',
+      contentDigest: createContentDigest(siteConfigData),
+    },
+  });
+
   const shopResult = await axios.get(
     `${process.env.JSON_DATASOURCE_URL}/shop.json`
   );
@@ -58,6 +71,23 @@ exports.sourceNodes = async ({
       contentDigest: createContentDigest(dailyReportData),
     },
   });
+
+  const hospitalResult = await axios.get(
+    `${process.env.JSON_DATASOURCE_URL}/hospital.json`
+  );
+  hospitalResult.data.forEach(hos => {
+    const node = {
+      ...hos,
+      hospitalId: `${hos.id}`,
+      // Needs to be global unique
+      id: createNodeId(`hospital-${hos.id}`),
+      internal: {
+        type: 'Hospital',
+        contentDigest: createContentDigest(hos),
+      },
+    };
+    actions.createNode(node);
+  });
 };
 
 exports.onCreateWebpackConfig = ({ actions }) => {
@@ -69,8 +99,21 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 };
 
 exports.createPages = async ({ actions, graphql }) => {
-  const shopDataResult = await graphql(`
+  const pageData = await graphql(`
     query {
+      siteConfig {
+        path {
+          shop
+          hospital
+        }
+        hospital {
+          equipments {
+            id
+            name
+          }
+        }
+      }
+
       allShop {
         edges {
           node {
@@ -90,23 +133,67 @@ exports.createPages = async ({ actions, graphql }) => {
           }
         }
       }
+
+      allHospital {
+        edges {
+          node {
+            hospitalId
+            name
+            contact {
+              address
+              phone
+              facebook
+              website
+            }
+            donate {
+              needs {
+                id
+              }
+              by {
+                type
+                title
+                infos
+                bank {
+                  id
+                  branch
+                  account
+                }
+              }
+            }
+          }
+        }
+      }
     }
   `);
 
-  if (shopDataResult.errors) {
+  if (pageData.errors) {
     reporter.panicOnBuild(`Error while running GraphQL query.`);
     return;
   }
 
   const shopTemplate = path.resolve(`src/templates/ShopView.js`);
 
-  shopDataResult.data.allShop.edges.forEach(edge => {
+  pageData.data.allShop.edges.forEach(edge => {
     const shop = edge.node;
     actions.createPage({
       path: `/shops/${slug(shop.shopId)}/`,
       component: slash(shopTemplate),
       context: {
         shop,
+        siteConfig: pageData.data.siteConfig,
+      },
+    });
+  });
+
+  const hospitalTemplate = path.resolve('src/templates/HospitalView.js');
+  pageData.data.allHospital.edges.forEach(edge => {
+    const hospital = edge.node;
+    actions.createPage({
+      path: `/hospitals/${slug(hospital.hospitalId)}/`,
+      component: slash(hospitalTemplate),
+      context: {
+        hospital,
+        siteConfig: pageData.data.siteConfig,
       },
     });
   });

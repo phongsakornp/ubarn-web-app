@@ -1,7 +1,6 @@
 import React from 'react';
 import { navigate } from '@reach/router';
 
-import { ImageService } from 'data/config';
 import { shopServiceToText } from 'data/convert';
 import Layout from 'components/Layout';
 import Seo from 'components/Seo';
@@ -10,7 +9,7 @@ const ComponentText = {
   MENU_SECTION: 'เมนู',
   BAHT: 'บาท',
 };
-const ShopView = ({ pageContext: { shop } }) => {
+const ShopView = ({ pageContext: { shop, siteConfig } }) => {
   // console.log(`Shop`, shop);
 
   const goBack = () => {
@@ -26,7 +25,7 @@ const ShopView = ({ pageContext: { shop } }) => {
             <div className={'flex flex-col w-full max-w-screen-lg'}>
               <div className="relative">
                 <img
-                  src={`${ImageService.SHOPS_URL}/${shop.shopId}/cover.jpg`}
+                  src={`${siteConfig.path.shop}/${shop.shopId}/cover.jpg`}
                   alt="Shop cover"
                   className="object-cover w-full h-48"
                 />
@@ -94,7 +93,7 @@ const ShopView = ({ pageContext: { shop } }) => {
                           </div>
                         </div>
                         <img
-                          src={`${ImageService.SHOPS_URL}/${shop.shopId}/menu-${menu.id}.jpg`}
+                          src={`${siteConfig.path.shop}/${shop.shopId}/menu-${menu.id}.jpg`}
                           alt="Shop cover"
                           className="object-cover w-20 h-20 rounded-lg"
                         />
