@@ -7,6 +7,7 @@ const ComponentText = {
   HOME_MENU: 'หน้าแรก',
   HOSPITAL_MENU: 'โรงพยาบาล',
   MARKETPLACE_MENU: 'ร้านค้า',
+  SHOP_REGISTER_MENU: 'ลงทะเบียนร้าน',
 };
 
 const background = '#fff8f5';
@@ -90,6 +91,10 @@ const NavBar = ({ title }) => {
               <MenuItem title={ComponentText.HOME_MENU} href="/" />
               <MenuItem title={ComponentText.HOSPITAL_MENU} href="/hospitals" />
               <MenuItem title={ComponentText.MARKETPLACE_MENU} href="/shops" />
+              <MenuItem
+                title={ComponentText.SHOP_REGISTER_MENU}
+                href="https://trangform.zerocovid.org/shop-register"
+              />
             </ul>
 
             <ul className="flex flex-col list-none lg:justify-end lg:flex-row lg:ml-auto">
