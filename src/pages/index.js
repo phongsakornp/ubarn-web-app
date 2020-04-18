@@ -64,7 +64,10 @@ const IndexPage = ({ data }) => {
     };
   });
 
-  const shopData = data.allShop.edges.slice(0, 6).map(edge => edge.node);
+  const shopData = data.allShop.edges
+    .slice(-6)
+    .reverse()
+    .map(edge => edge.node);
 
   return (
     <Layout

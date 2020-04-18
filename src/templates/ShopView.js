@@ -27,7 +27,7 @@ const ShopView = ({ pageContext: { shop, siteConfig } }) => {
                 <img
                   src={`${siteConfig.path.shop}/${shop.shopId}/cover.jpg`}
                   alt="Shop cover"
-                  className="object-cover w-full h-48"
+                  className="object-cover w-full h-auto"
                 />
                 <div className="absolute top-0">
                   <button className="bg-blue-700 opacity-75" onClick={goBack}>
@@ -42,23 +42,33 @@ const ShopView = ({ pageContext: { shop, siteConfig } }) => {
               <div className="flex flex-col w-full px-5">
                 <div className="mt-3 text-2xl font-bold">{shop.name}</div>
                 <div className="flex">
-                  <p className="text-sm text-gray-700 leading-tight">
+                  <p className="text-sm leading-tight text-gray-700">
                     {shop.address}
                   </p>
                 </div>
                 <div className="flex items-center mt-3">
-                  <i className={'text-indigo-600 fas fa-phone'}></i>
-                  <div
-                    className={
-                      'tracking-wider text-indigo-600 font-semibold ml-3'
-                    }
-                  >
-                    {shop.phone}
+                  <div className="flex items-center">
+                    <i
+                      className={
+                        'text-indigo-600 text-xl fas fa-phone-square-alt'
+                      }
+                    ></i>
+                    <div className={'text-indigo-600 font-semibold ml-2'}>
+                      {shop.phone}
+                    </div>
                   </div>
+                  {shop.lineId ? (
+                    <div className="flex items-center ml-6">
+                      <i className={'text-green-600 text-xl fab fa-line'}></i>
+                      <div className={'text-green-700 font-semibold ml-2'}>
+                        {shop.lineId}
+                      </div>
+                    </div>
+                  ) : null}
                 </div>
               </div>
 
-              <div className={'text-sm font-semibold p-5 mt-4 bg-orange-200'}>
+              <div className={'text-base font-semibold p-5 mt-4 bg-orange-200'}>
                 {shop.services.reduce((result, service, idx) => {
                   if (shop.services.length === 1) {
                     return `${shopServiceToText(service)}`;
@@ -72,6 +82,13 @@ const ShopView = ({ pageContext: { shop, siteConfig } }) => {
                   return `${result} / ${shopServiceToText(service)} / `;
                 }, ``)}
               </div>
+
+              {shop.info ? (
+                <div className="flex items-center bg-orange-300 px-5 py-2">
+                  <i className="text-orange-600 fas fa-info-circle"></i>
+                  <div className="ml-2">{shop.info}</div>
+                </div>
+              ) : null}
 
               <div className="flex flex-col w-full px-5">
                 <div className="mt-3 text-lg font-bold">
