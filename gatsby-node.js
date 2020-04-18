@@ -131,6 +131,8 @@ exports.createPages = async ({ actions, graphql }) => {
             services
             address
             phone
+            lineId
+            info
           }
         }
       }
